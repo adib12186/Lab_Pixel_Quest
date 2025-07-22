@@ -8,7 +8,7 @@ public class playerjump : MonoBehaviour
     public float jumpforce = 10f;
     public float CapsuleHeight = 0.25f;
     public float CapsuleRadius = 0.08f;
-    private float fallforce = -1;
+    private float fallforce = 4;
     public Transform feetCollider;
     public LayerMask groundMask;
     private bool _groundcheck;
@@ -33,13 +33,19 @@ public class playerjump : MonoBehaviour
             
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Water") { waterCheck =true; }
+
+    }
+
     // Update is called once per frame
     void Update()
     {          
         _groundcheck = Physics2D.OverlapCapsule(point: feetCollider.position,
        size: new Vector2(CapsuleHeight, CapsuleRadius), CapsuleDirection2D.Horizontal,0,groundMask);
          
-        if (Input.GetKeyDown(KeyCode.Space)&& _groundcheck)
+        if (Input.GetKeyDown(KeyCode.Space)&& (_groundcheck||waterCheck))   
              
         {
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpforce);
