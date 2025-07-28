@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    public Image playerhealth;
-
+    public Image playerhealth; 
+    public TextMeshProUGUI CoinText;
     // Start is called before the first frame update
-    private void Start()
+    public void StartUI()
     {
-        playerhealth = GameObject.Find("HeartImage").GetComponent<Image>();
-        
+        playerhealth = GameObject.Find("playerhealth").GetComponent<Image>();
+        CoinText = GameObject.Find("CoinText").GetComponentInParent<TextMeshProUGUI>();  
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,14 +13,18 @@ public class publicstats : MonoBehaviour
     public int maxhealth = 3;
     public Transform respawnPoint;
     private PlayerUI _PlayerUI;
-
-
+    public TextMeshProUGUI textUI;
+    public int CoinsInLevel = 0;
 
     private void Start()
     {
         _PlayerUI = GetComponent<PlayerUI>();
-        _PlayerUI =.UpdateHealth(_health, _maxhealth);
-    }
+        _PlayerUI.UpdateHealth(health, maxhealth); 
+        CoinsInLevel = GameObject.Find("Coins").transform.childCount;
+        _PlayerUI.UpdateText(CoinCounter + "/" + CoinsInLevel);
+
+       
+    }    
 
     private void OnTriggerEnter2D(Collider2D other)
 
