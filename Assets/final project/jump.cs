@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-public class playerjump : MonoBehaviour
+public class jump : MonoBehaviour
 {
     public float jumpforce = 10f;
     public float CapsuleHeight = 0.25f;
