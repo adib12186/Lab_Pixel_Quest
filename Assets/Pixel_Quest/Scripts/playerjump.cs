@@ -5,28 +5,7 @@ using UnityEngine;
 
 public class playerjump : MonoBehaviour
 {
-    public float jumpforce = 10f;
-    public float CapsuleHeight = 0.25f;
-    public float CapsuleRadius = 0.08f;
-    private float fallforce = 4;
-    public Transform feetCollider;
-    public LayerMask groundMask;
-    private bool _groundcheck;
-    private Vector2 gravityforce;
-    private Rigidbody2D _rigidbody2d;
-    private bool waterCheck;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gravityforce = new Vector2(0f, Physics2D.gravity.y);
-        _rigidbody2d = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Water") { waterCheck=false; }
-          
-
+    w
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
