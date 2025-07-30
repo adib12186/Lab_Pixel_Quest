@@ -18,10 +18,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (_rb.velocity.x == 0)
         {
-            _anim.SetBool("PlayerWalking", false);
-        }
-        if (_rb.velocity.x == 0)
-        {
             _anim.SetBool("PlayerIdle", true);
         }
         if ((Input.GetKeyDown(KeyCode.X)))
