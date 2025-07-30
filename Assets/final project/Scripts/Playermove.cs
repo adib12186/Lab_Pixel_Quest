@@ -22,11 +22,11 @@ public class PlayerMove : MonoBehaviour
   Debug.Log(xInput);
         if (xInput < 0){ 
             Debug.Log("a");
-            _spriteRenderer.flipX= false;
+            _spriteRenderer.flipX= true;
         }
          else if (xInput > 0){
             Debug.Log("ab");
-            _spriteRenderer.flipX = true; 
+            _spriteRenderer.flipX = false; 
         }
     }
 }

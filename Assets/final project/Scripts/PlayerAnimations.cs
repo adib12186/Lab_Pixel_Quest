@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -15,13 +16,17 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        if (_rb.velocity.x== 0)
+        if (_rb.velocity.x == 0)
         {
             _anim.SetBool("PlayerWalking", false);
         }
-        else
+        if (_rb.velocity.x == 0)
         {
             _anim.SetBool("PlayerIdle", true);
+        }
+        if ((Input.GetKeyDown(KeyCode.X)))
+        {
+            _anim.SetBool("PlayerDash", true);
         }
     }
 }

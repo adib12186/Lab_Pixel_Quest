@@ -8,14 +8,11 @@ public class PlayerStats : MonoBehaviour
     public int coinCount = 0;
     public int Health = 3;
     public int maxHealth = 3;
-    private PlayerUIController _PUC;
+ 
      public int CoinsInLevel = 0;
     void Start()
     {
-        _PUC = GetComponent<PlayerUIController>();
-        _PUC.UpdateHealth(Health, maxHealth);
-        CoinsInLevel = GameObject.Find("Coins").transform.childCount;
-        _PUC.UpdateText(coinCount + "/" + CoinsInLevel);
+       
     }
 
     // Update is called once per frame
@@ -31,20 +28,21 @@ public class PlayerStats : MonoBehaviour
 
         switch (other.tag)
         {
-            case "Death": //damage system
+            
+                case "Death": //damage system
                 {
-                    Health--;
-                    _PUC.UpdateHealth(Health, maxHealth);
+
                     if (Health <= 0)
                     {
                         string thisLevel = SceneManager.GetActiveScene().name;
                         SceneManager.LoadScene(thisLevel);
                     }
+                    break;
                 }
                 case "Coin":
                 {
                     coinCount++;
-                    _PUC.UpdateText(coinCount + "/" + CoinsInLevel);
+                    
                     Destroy(other.gameObject);
                     break;
                 }
@@ -53,7 +51,7 @@ public class PlayerStats : MonoBehaviour
                     if (Health < 3)
                     {
                         Health++;
-                        _PUC.UpdateHealth(Health, maxHealth);
+            
                         Destroy(other.gameObject);
                     }
                     break;
