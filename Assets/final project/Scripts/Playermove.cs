@@ -8,11 +8,11 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb; //physics
     private SpriteRenderer _spriteRenderer; //image
     public int speed = 4;
-   
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer= GetComponentInChildren<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
 
@@ -34,4 +34,6 @@ public class PlayerMove : MonoBehaviour
             _spriteRenderer.flipX = false;
         }
     }
+    
+    
 }

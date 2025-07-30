@@ -18,11 +18,21 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (_rb.velocity.x == 0)
         {
+            _anim.SetBool("PlayerWalk", false);
             _anim.SetBool("PlayerIdle", true);
+            _anim.SetBool("PlayerDash", false);
         }
-        if ((Input.GetKeyDown(KeyCode.X)))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            _anim.SetBool("PlayerDash", true);
+           _anim.SetBool("PlayerWalk", false);
+            _anim.SetBool("PlayerIdle", false);
+            _anim.SetBool("PlayerDash", true); 
+        }
+        else
+        {
+            _anim.SetBool("PlayerWalk", true);
+            _anim.SetBool("PlayerIdle", false);
+            _anim.SetBool("PlayerDash", false);
         }
     }
 }
