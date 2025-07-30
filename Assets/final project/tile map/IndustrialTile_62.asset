@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: IndustrialTile_62
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 2557fcc03e91f0d4097131c60ef51664, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca9203a2009fa6f43845d8e79f6f620b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
