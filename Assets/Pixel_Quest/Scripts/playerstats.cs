@@ -19,9 +19,9 @@ public class publicstats : MonoBehaviour
     private void Start()
     {
         _PlayerUI = GetComponent<PlayerUI>();
-        _PlayerUI.UpdateHealth(health, maxhealth); 
+        _PlayerUI.UpdateHealth(health, maxhealth);        
         CoinsInLevel = GameObject.Find("Coins").transform.childCount;
-        _PlayerUI.UpdateText(CoinCounter + "/" + CoinsInLevel);
+      //_PlayerUI.UpdateText(CoinCounter + "/" + CoinsInLevel);          // throw new NotImplemen
 
        
     }    
@@ -59,7 +59,7 @@ public class publicstats : MonoBehaviour
             case "Health":
                 {
                     health++;
-                    _PlayerUI.UpdateHealth(_health, _maxhealth);
+                    _PlayerUI.UpdateHealth(health, maxhealth);
 
 
 
