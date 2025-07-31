@@ -8,54 +8,54 @@ public class PlayerStats : MonoBehaviour
     public int coinCount = 0;
     public int Health = 3;
     public int maxHealth = 3;
- 
-     public int CoinsInLevel = 0;
+    public int CoinsInLevel = 0;
+
+    private PlayerUIController uiController;
+
     void Start()
     {
-       
+        uiController = GetComponent<PlayerUIController>();
+        uiController.StartUI();
+
+        uiController.UpdateHealth(Health, maxHealth);
+
+        CoinsInLevel = GameObject.Find("Coins").transform.childCount;
+        uiController.UpdateText(coinCount + " / " + CoinsInLevel);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-
         switch (other.tag)
         {
-            
-                case "Death": //damage system
+            case "Death":
+                Health--;
+                uiController.UpdateHealth(Health, maxHealth);
+                if (Health <= 0)
                 {
+                    string thisLevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisLevel);
+                }
+                break;
 
-                    if (Health <= 0)
-                    {
-                        string thisLevel = SceneManager.GetActiveScene().name;
-                        SceneManager.LoadScene(thisLevel);
-                    }
-                    break;
-                }
-                case "Coin":
-                {
-                    coinCount++;
-                    
-                    Destroy(other.gameObject);
-                    break;
-                }
+            case "Coin":
+                coinCount++;
+                uiController.UpdateText(coinCount + " / " + CoinsInLevel);
+                Destroy(other.gameObject);
+                break;
+
             case "Health":
+                if (Health < maxHealth)
                 {
-                    if (Health < 3)
-                    {
-                        Health++;
-            
-                        Destroy(other.gameObject);
-                    }
-                    break;
+                    Health++;
+                    uiController.UpdateHealth(Health, maxHealth);
+                    Destroy(other.gameObject);
                 }
+                break;
+
+            case "Finish":
+                string nextLevel = other.GetComponent<LevelGoal>().nextLevel;
+                SceneManager.LoadScene(nextLevel);
+                break;
         }
     }
 }

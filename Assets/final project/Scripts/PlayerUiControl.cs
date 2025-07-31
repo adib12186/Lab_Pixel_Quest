@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class PlayerUiControl : MonoBehaviour
+public class PlayerUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI TMPU;
+    public Image heartImage;
+    public TextMeshProUGUI dashCooldownText;
+
+
+    public void StartUI()
     {
-        
+        if (heartImage == null)
+            heartImage = GameObject.Find("HeartImage")?.GetComponent<Image>();
+
+        if (TMPU == null)
+            TMPU = GameObject.Find("CoinText")?.GetComponent<TextMeshProUGUI>();
+        if (dashCooldownText == null)
+    dashCooldownText = GameObject.Find("DashCooldownText")?.GetComponent<TextMeshProUGUI>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateText(string newText)
     {
-        
+        if (TMPU != null)
+            TMPU.text = newText;
+    }
+
+    public void UpdateHealth(float Health, float maxHealth)
+    {
+        if (heartImage != null)
+            heartImage.fillAmount = Health / maxHealth;
+    }
+    public void UpdateDashCooldown(float cooldown)
+{
+    if (dashCooldownText != null)
+    {
+        if (cooldown <= 0)
+            dashCooldownText.text = "Dash Ready!";
+        else
+            dashCooldownText.text = "Dash in: " + Mathf.CeilToInt(cooldown) + "s";
     }
 }
+
+}
+
