@@ -11,28 +11,35 @@ public class PlayerAnimation : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-        
+
     }
 
     void Update()
     {
-        if (_rb.velocity.x == 0)
+        if (Input.GetKey(KeyCode.X))
         {
             _anim.SetBool("PlayerWalk", false);
-            _anim.SetBool("PlayerIdle", true);
-            _anim.SetBool("PlayerDash", false);
+            _anim.SetBool("PlayerDash", true);
+            _anim.SetBool("PlayerSlide", false);
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKey(KeyCode.S))
         {
-           _anim.SetBool("PlayerWalk", false);
-            _anim.SetBool("PlayerIdle", false);
-            _anim.SetBool("PlayerDash", true); 
+            _anim.SetBool("PlayerWalk", false);
+            _anim.SetBool("PlayerDash", false);
+            _anim.SetBool("PlayerSlide", true);
+        }
+        else if (_rb.velocity.x != 0)
+        {
+            _anim.SetBool("PlayerWalk", true);
+            _anim.SetBool("PlayerDash", false);
+            _anim.SetBool("PlayerSlide", false);
         }
         else
         {
-            _anim.SetBool("PlayerWalk", true);
-            _anim.SetBool("PlayerIdle", false);
+            _anim.SetBool("PlayerWalk", false);
             _anim.SetBool("PlayerDash", false);
+            _anim.SetBool("PlayerSlide", false);
         }
     }
 }
+

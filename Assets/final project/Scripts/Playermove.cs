@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     public int speed = 4;
 
     [Header("Dash Settings")]
-    public float dashForce = 20f;
+    public float dashForce = 50f;
     public float dashCooldown = 30f;
     private float currentCooldown = 0f;
     private bool canDash = true;
@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
 
     void HandleDash()
     {
-        if (Input.GetKeyDown(KeyCode.X) && canDash && !isSliding)
+        if (Input.GetKey(KeyCode.X) && canDash && !isSliding)
         {
             float direction = _spriteRenderer.flipX ? -1f : 1f;
             rb.velocity = new Vector2(direction * dashForce, rb.velocity.y);
@@ -80,7 +80,7 @@ public class PlayerMove : MonoBehaviour
 
     void HandleSlide()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !isSliding)
+        if (Input.GetKey(KeyCode.S) && !isSliding)
         {
             StartSlide();
         }
