@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b6894d5a91a4e754ca9920f9af74f8f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3115768
+      value: 98.38
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6894d5a91a4e754ca9920f9af74f8f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1264863
+      value: -10.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6894d5a91a4e754ca9920f9af74f8f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -136,7 +136,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
