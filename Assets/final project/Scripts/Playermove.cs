@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer _spriteRenderer;
 
-    public int speed = 4;
+    public int speed = 9;
 
     [Header("Dash Settings")]
     public float dashForce = 50f;

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ShopPurchase : MonoBehaviour
 {
-    public Text coinText;
-    public Button buySwordButton;
-    public Text swordStatusText;
+   //public Text4 coinText;
+   //public Button3 buySwordButton;
+   //public Text5 swordStatusText;
     public int swordCost = 50;
 
     void Start()
@@ -16,8 +16,8 @@ public class ShopPurchase : MonoBehaviour
         // Check if already bought
         if (PlayerPrefs.GetInt("SwordPurchased", 0) == 1)
         {
-            swordStatusText.text = "Already Purchased!";
-            buySwordButton.interactable = false;
+           // swordStatusText.text = "Already Purchased!";
+          //  buySwordButton.interactable = false;
         }
     }
 
@@ -31,14 +31,14 @@ public class ShopPurchase : MonoBehaviour
             PlayerPrefs.SetInt("SwordPurchased", 1); // Save unlock
             PlayerPrefs.Save();
 
-            swordStatusText.text = "Purchased!";
-            buySwordButton.interactable = false;
+           // swordStatusText.text = "Purchased!";
+           //buySwordButton.interactable = false;
 
             Debug.Log("Sword purchased!");
         }
         else
         {
-            swordStatusText.text = "Not enough coins!";
+            //swordStatusText.text = "Not enough coins!";
             Debug.Log("Not enough coins!");
         }
 
@@ -47,6 +47,6 @@ public class ShopPurchase : MonoBehaviour
 
     void UpdateUI()
     {
-        coinText.text = "Coins: " + RewardSystem.Instance.coins;
+        //coinText.text = "Coins: " + RewardSystem.Instance.coins;
     }
 }

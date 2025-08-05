@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public int coinCount = 0;
-    public int Health = 3;
-    public int maxHealth = 3;
+    public int Health = 1;
+    public int maxHealth = 1;
     public int CoinsInLevel = 0;
 
     
