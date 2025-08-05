@@ -7,8 +7,36 @@ using UnityEngine.AI;
 
 public class RatCode : MonoBehaviour
 {
-    public Transform player;          // Reference to the player
-    public float moveSpeed = 2f;      // How fast the rat moves
+    public float jumpForce = 5f;
+    private Rigidbody2D rb;
+    public Transform player;          
+    public float moveSpeed = 2f;      
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Damage the player repeatedly
+            Death playerHealth = collision.gameObject.GetComponent<Death>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1); // or whatever value
+            }
+        }
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Spike"))
+        {
+            Debug.Log("Rat hit spike — jumping over!");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Jump up
+        }
+    }
 
     void Update()
     {
