@@ -10,6 +10,8 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth = 3;
     public int CoinsInLevel = 0;
 
+    
+
     private PlayerUIController uiController;
 
     void Start()
@@ -25,16 +27,15 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         switch (other.tag)
         {
             case "Death":
-                Health--;
+
                 uiController.UpdateHealth(Health, maxHealth);
-                if (Health <= 0)
-                {
-                    string thisLevel = SceneManager.GetActiveScene().name;
-                    SceneManager.LoadScene(thisLevel);
-                }
+                string thisLevel = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene(thisLevel);
+
                 break;
 
             case "Coin":
@@ -52,10 +53,25 @@ public class PlayerStats : MonoBehaviour
                 }
                 break;
 
-            case "Finish":
-                string nextLevel = other.GetComponent<LevelGoal>().nextLevel;
-                SceneManager.LoadScene(nextLevel);
+            case "Rat":
+                Health--;
+                if (Health <= 0)
+                {
+                    thisLevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisLevel);
+                }
                 break;
+
+            case "Finish":
+            // if (coinCount==20)
+                {
+                    string nextLevel = other.GetComponent<LevelGoal>().nextLevel;
+                    SceneManager.LoadScene(nextLevel);
+                }
+                    break;
+                
+               
+
         }
     }
 }

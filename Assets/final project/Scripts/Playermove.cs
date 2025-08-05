@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PlayerMove : MonoBehaviour
@@ -12,9 +11,12 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Dash Settings")]
     public float dashForce = 50f;
-    public float dashCooldown = 30f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 15f;
+    private float currentDashTime = 0f;
     private float currentCooldown = 0f;
     private bool canDash = true;
+    private bool isDashing = false;
 
     [Header("Slide Settings")]
     public float slideSpeed = 10f;
@@ -36,51 +38,23 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleDash();
-        HandleSlide();
+        HandleDashCooldown();
+        HandleInput();
     }
 
-    void HandleMovement()
+    void FixedUpdate()
     {
-        if (isSliding) return; // Don't allow normal movement during slide
-
-        float xInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
-
-        if (xInput < 0)
-            _spriteRenderer.flipX = true;
-        else if (xInput > 0)
-            _spriteRenderer.flipX = false;
+        HandleMovement();
     }
 
-    void HandleDash()
+    void HandleInput()
     {
         if (Input.GetKey(KeyCode.X) && canDash && !isSliding)
         {
-            float direction = _spriteRenderer.flipX ? -1f : 1f;
-            rb.velocity = new Vector2(direction * dashForce, rb.velocity.y);
-            canDash = false;
-            currentCooldown = dashCooldown;
+            StartDash();
         }
 
-        if (!canDash)
-        {
-            currentCooldown -= Time.deltaTime;
-            uiController.UpdateDashCooldown(currentCooldown);
-
-            if (currentCooldown <= 0)
-            {
-                canDash = true;
-                currentCooldown = 0;
-                uiController.UpdateDashCooldown(0);
-            }
-        }
-    }
-
-    void HandleSlide()
-    {
-        if (Input.GetKey(KeyCode.S) && !isSliding)
+        if (Input.GetKey(KeyCode.S) && !isSliding && !isDashing)
         {
             StartSlide();
         }
@@ -91,6 +65,60 @@ public class PlayerMove : MonoBehaviour
             if (slideTimer <= 0)
             {
                 EndSlide();
+            }
+        }
+
+        if (isDashing)
+        {
+            currentDashTime -= Time.deltaTime;
+            if (currentDashTime <= 0)
+            {
+                EndDash();
+            }
+        }
+    }
+
+    void HandleMovement()
+    {
+        if (isSliding || isDashing) return;
+
+        float xInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+
+        if (xInput < 0)
+            _spriteRenderer.flipX = true;
+        else if (xInput > 0)
+            _spriteRenderer.flipX = false;
+    }
+
+    void StartDash()
+    {
+        isDashing = true;
+        canDash = false;
+        currentDashTime = dashDuration;
+        currentCooldown = dashCooldown;
+
+        float direction = _spriteRenderer.flipX ? -1f : 1f;
+        rb.velocity = new Vector2(direction * dashForce, 0);
+    }
+
+    void EndDash()
+    {
+        isDashing = false;
+    }
+
+    void HandleDashCooldown()
+    {
+        if (!canDash)
+        {
+            currentCooldown -= Time.deltaTime;
+            uiController.UpdateDashCooldown(currentCooldown);
+
+            if (currentCooldown <= 0)
+            {
+                canDash = true;
+                currentCooldown = 0;
+                uiController.UpdateDashCooldown(0);
             }
         }
     }
