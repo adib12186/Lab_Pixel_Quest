@@ -9,6 +9,8 @@ TagManager:
   - Health
   - Coin
   - Ground
+  - Rat
+  - The End
   layers:
   - Default
   - TransparentFX
