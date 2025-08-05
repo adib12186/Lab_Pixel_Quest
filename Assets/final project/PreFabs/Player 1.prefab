@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 9173423600836691411}
   - component: {fileID: 7360180562962363053}
   - component: {fileID: 7620025712913888570}
+  - component: {fileID: 4528837699383875692}
+  - component: {fileID: 4700086500341958639}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -160,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   dashForce: 50
+  dashDuration: 0.5
   dashCooldown: 15
   slideSpeed: 10
   slideDuration: 0.3
@@ -212,6 +215,35 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _waterCheck: 0
+--- !u!114 &4528837699383875692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230494806150417942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a461d973093487ca93791da6f0e303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: L2
+  thirdLevel: L3
+  EndPage: EndScene
+--- !u!114 &4700086500341958639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230494806150417942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826faabe7cad64abd8a5f9a0c19ffa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDuration: 3
+  timerText: {fileID: 0}
 --- !u!1 &2333352505199988318
 GameObject:
   m_ObjectHideFlags: 0
