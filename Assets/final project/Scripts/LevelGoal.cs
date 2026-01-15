@@ -10,20 +10,21 @@ public class LevelGoal : MonoBehaviour
     public string nextLevel = "L2";
     public string thirdLevel = "L3";
     public string EndPage = "EndScene";
-    
 
-   
+
+
     // Start is called before the first frame update
     void Start()
     {
-rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
-    
-    
-    
-    
-private void OnTriggerEnter2D(Collider2D other)
+
+
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
 
@@ -44,7 +45,7 @@ private void OnTriggerEnter2D(Collider2D other)
                     SceneManager.LoadScene(EndPage);
                     break;
                 }
-                
-            }
+
         }
+    }
 }
